@@ -56,7 +56,6 @@ encrypt(self, input)
         unsigned char* intext = SvPV(input, blockSize);
         if (blockSize != 8) {
             croak("Encryption error: Block size must be 8 bytes long!");
-            RETVAL = newSVpv("", 0);
         } else {
             RETVAL = newSVpv("", blockSize);
             skip_encrypt(self->tab, intext, SvPV_nolen(RETVAL));
@@ -76,7 +75,6 @@ decrypt(self, input)
         unsigned char* intext = SvPV(input, blockSize);
         if (blockSize != 8) {
             croak("Decryption error: Block size must be 8 bytes long!");
-            RETVAL = newSVpv("", 0);
         } else {
             RETVAL = newSVpv("", blockSize);
             skip_decrypt(self->tab, intext, SvPV_nolen(RETVAL));
